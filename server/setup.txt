@@ -1,0 +1,10 @@
+## Установка
+  1. Установить права достпа к каталогу: chown -R nobody: ~/school_project
+  2. Зайти в контейнер: docker run --rm -ti -u nobody -v "$HOME/school_project:/school_project" -w /school_project python:3.10 bash
+  3. Создать python virtual environment: python3 -m venv .venv
+  4. Включить venv: . .venv/bin/activate
+  5. Установить зависимости: pip install -r requirements.txt
+  6. Запустить
+
+Запустить в консоли - docker run --name school-project -u nobody -v "$HOME/school_project:/school_project" -w /school_project python:3.10 bash -c '. .venv/bin/activate && exec python -u main.py'
+Запустить как сервис - docker run --detach --restart unless-stopped --name school-project -u nobody -v "$HOME/school_project:/school_project" -w /school_project python:3.10 bash -c '. .venv/bin/activate && exec python -u main.py'
